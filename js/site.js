@@ -21,8 +21,6 @@ function getValues() {
     } else {
         alert("You must enter integers.");
     }
-
-    
 }
 
 //view
