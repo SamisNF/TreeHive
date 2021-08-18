@@ -1,8 +1,14 @@
 :root {
     --primary-color: #1d5888;
-    --secondary-color: #ff993b;
+    --secondary-color: #FFC400;
     --dark-color: #292929;
+    --grey-text: #414141;
     --white-color: #e7e7e7;
+}
+
+.p-text {
+    font-size: 1rem;
+    color: var(--grey-text);
 }
 
 body{
@@ -18,7 +24,18 @@ footer{
 }
 
 h1, h2, h3, h4, h5, h6{
+    font-family: 'Exo 2', sans-serif;
+    color: var(--dark-color);
+
+}
+
+a {
+    text-decoration: none;
     color: var(--primary-color);
+}
+
+a:hover {
+    color: var(--secondary-color);
 }
 
 main>.container {
