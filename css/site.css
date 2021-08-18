@@ -58,7 +58,7 @@ footer .social>a:hover{
 }
 
 .jsicon{
-    color: rgb(247, 223, 30)
+    color: rgb(247, 223, 30);
 }
 
 .html5icon{
@@ -71,6 +71,18 @@ footer .social>a:hover{
 
 .checklist >li i{
     color: var(--secondary-color);
+}
+
+.treeHive {
+ color: peru;
+}
+
+.tree {
+    color: green;
+}
+
+.hive {
+    color: yellow;
 }
 
 code[class*="language-"],
