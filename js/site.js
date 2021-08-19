@@ -22,8 +22,6 @@ function getValues(value1, value2) {
     } else {
         alert("You must enter whole numbers from 1 to 10.");
     }
-
-    
 }
 
 //view
