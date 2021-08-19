@@ -3,13 +3,14 @@
 // multiples of both values entered in the inputs will return "Tree Hive"
 
 // GLOBAL VARIABLES
-let value1 = document.getElementById("value1").value;
-let value2 = document.getElementById("value2").value;
 let numberSet = [];
 
 //CONTROL
-function getValues(value1, value2) {
+function getValues() {
     
+    let value1 = document.getElementById("value1").value;
+    let value2 = document.getElementById("value2").value;
+
     value1 = parseInt(value1);
     value2 = parseInt(value2);
 
@@ -17,7 +18,7 @@ function getValues(value1, value2) {
 
         numberSet = generateNumbers();
 
-        displayOutput(numberSet);
+        displayOutput(numberSet, value1, value2);
 
     } else {
         alert("You must enter whole numbers from 1 to 10.");
