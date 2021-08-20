@@ -2,9 +2,6 @@
 // multiples of the value entered into <input id="value2"> will return "Hive"
 // multiples of both values entered in the inputs will return "Tree Hive"
 
-// GLOBAL VARIABLES
-let numberSet = [];
-
 //CONTROL
 function getValues() {
     
@@ -16,7 +13,8 @@ function getValues() {
 
     if(Number.isInteger(value1) && Number.isInteger(value2) && value1 > 0 && value1 < 11 && value2 > 0 && value2 < 11) {
 
-        numberSet = generateNumbers();
+        let numberSet = [];
+        numberSet = generateNumbers(numberSet);
 
         displayOutput(numberSet, value1, value2);
 
@@ -26,7 +24,7 @@ function getValues() {
 }
 
 //view
-function generateNumbers() {
+function generateNumbers(numberSet) {
     for (let index = 1; index <= 100; index++) {
         numberSet.push(index);
     }
@@ -37,7 +35,8 @@ function generateNumbers() {
 //display
 function displayOutput(numberSet, value1, value2) {
 
-    let templateRows = "";
+    //put template contents in a variable templateRows
+    let templateRows = document.getElementById("thTemplate");
 
     for (let index = 0; index < numberSet.length; index++) {
 
@@ -64,5 +63,27 @@ function displayOutput(numberSet, value1, value2) {
 
     document.getElementById("resultsDiv").classList.remove("invisible");
 }
+
+
+
+// this variable takes the contents of <tbody id="results"> from the page app.html 
+let tableBody = document.getElementById("results");
+// just in case there is some pre-existing content in <tbody id="results"> , we add this line.
+tableBody.innerHTML = "";
+// this makes sure that tableBody is an empty string variable
+
+// this variable retrieves the template contents from <template id="thTemplate">
+let templateRow = document.getElementById("thTemplate");
+
+//the method document.importNode() extracts the #document-fragment from templateRow.
+//then the #document-fragment is passed to this variable.
+let tableRow = document.importNode(templateRow.contentEditable, true);
+
+//this variable is an array of five indexed values, each one is an empty <td> tag.
+let rowCols = tableRow.querySelectorAll("td");
+
+
+
+
 
 
