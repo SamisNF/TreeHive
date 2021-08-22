@@ -13,10 +13,9 @@ function getValues() {
 
     if(Number.isInteger(value1) && Number.isInteger(value2) && value1 > 0 && value1 < 11 && value2 > 0 && value2 < 11) {
 
-        let numberSet = [];
-        numberSet = generateNumbers(numberSet);
+        displayArray = generateNumbers(value1, value2);
 
-        displayOutput(numberSet, value1, value2);
+        displayOutput(displayArray);
 
     } else {
         alert("You must enter whole numbers from 1 to 10.");
@@ -24,66 +23,60 @@ function getValues() {
 }
 
 //view
-function generateNumbers(numberSet) {
+function generateNumbers(value1, value2) {
+    
+    let numberSet = [];
+    
     for (let index = 1; index <= 100; index++) {
         numberSet.push(index);
     }
 
-    return numberSet;
+    //this variable will hold the generated content
+    let displayArray= [];
+
+    for (let index = 0; index < numberSet.length; index++) {
+
+        let number = numberSet[index];
+
+        if (number % value1 == 0 && number % value2 == 0) {
+            displayArray.push("Tree Hive");
+        } else if (number % value1 == 0) {
+            displayArray.push("Tree");
+        } else if (number % value2 == 0) {
+            displayArray.push("Hive");
+        } else {
+            displayArray.push(number);
+        }
+
+    return displayArray;
+    }
 }
 
-//display
-function displayOutput(numberSet, value1, value2) {
+//loop over the array and create a tablerows with five columns each
+function displayOutput(displayArray) {
 
     // this variable takes the contents of <tbody id="results"> from the page app.html 
     let tableBody = document.getElementById("results");
 
     // just in case there is some pre-existing content in <tbody id="results"> , we add this line.
-    // this makes sure that tableBody is an empty string variable
+    // The method .innerHTML replaces any child conent of <tbody id="results"> with an empty string.
     tableBody.innerHTML = "";
-    
-    //this variable will hold the generated content - 100 <tr><td></td></tr> tags
-    let templateRows = "";
 
-    for (let index = 0; index < numberSet.length; index++) {
+    //Retrieve the content of <template id="thTemplate"> and pass it to the variable templateRow.
+    let templateRow = document.getElementById("thTemplate");
 
-        let number = numberSet[index];
-        let className = "";
+    for (index = 0; index < displayArray.length; index += 5) {
 
-        if (number % value1 == 0 && number % value2 == 0) {
-            number = "Tree Hive";
-            className = "treeHive";
-        } else if (number % value1 == 0) {
-            number = "Tree";
-            className = "tree";
-        } else if (number % value2 == 0) {
-            number = "Hive";
-            className = "hive";
-        } else {
-            className = "justNumber";
-        }
+        let tableRow = document.importNode(templateRow.contentEditable, true);
 
-        templateRows += `<tr><td class="${className}">${number}</td></tr>`
+        let rowCols = tableRow.querySelectorAll("td");
+        rowCols[0].textContent = displayArray[index];
+        rowCols[1].textContent = displayArray[index+1];
+        rowCols[2].textContent = displayArray[index+2];
+        rowCols[3].textContent = displayArray[index+3];
+        rowCols[4].textContent = displayArray[index+4];
 
-        //return templateRows;
-    }
-
-    //put template contents in a variable templateRows
-    let templateColumns = document.getElementById("thTemplate");
-
-    for (index = 0; index < numberSet.length; index += 5) {
-
-        let colDocFragment = document.importNode(templateColumns.content, true);
-        let tdNodeList = colDocFragment.querySelectorAll("td");
-        let rowFiveCols = [];    
-    
-        rowFiveCols[0] = tdNodeList[index];
-        rowFiveCols[1] = tdNodeList[index + 1];
-        rowFiveCols[2] = tdNodeList[index + 2];
-        rowFiveCols[3] = tdNodeList[index + 3];
-        rowFiveCols[4] = tdNodeList[index + 4];
-    
-        tableBody.appendChild(rowFiveCols);
+        tableBody.appendChild(tableRow);
     }
 
     document.getElementById("resultsDiv").classList.remove("invisible");
@@ -107,9 +100,3 @@ function displayOutput(numberSet, value1, value2) {
 
 //this variable is an array of five indexed values, each one is an empty <td> tag.
 //let rowCols = tableRow.querySelectorAll("td");
-
-
-
-
-
-
