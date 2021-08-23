@@ -73,15 +73,15 @@ footer .social>a:hover{
     color: var(--secondary-color);
 }
 
-.treeHive {
+.TreeHive {
  color: peru;
 }
 
-.tree {
+.Tree {
     color: green;
 }
 
-.hive {
+.Hive {
     color: #C3C02D;
 }
 

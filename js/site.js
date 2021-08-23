@@ -39,7 +39,7 @@ function generateNumbers(value1, value2) {
         let number = numberSet[index];
 
         if (number % value1 == 0 && number % value2 == 0) {
-            displayArray.push("Tree Hive");
+            displayArray.push("TreeHive");
         } else if (number % value1 == 0) {
             displayArray.push("Tree");
         } else if (number % value2 == 0) {
@@ -47,9 +47,9 @@ function generateNumbers(value1, value2) {
         } else {
             displayArray.push(number);
         }
+    }
 
     return displayArray;
-    }
 }
 
 //loop over the array and create a tablerows with five columns each
@@ -67,36 +67,26 @@ function displayOutput(displayArray) {
 
     for (index = 0; index < displayArray.length; index += 5) {
 
-        let tableRow = document.importNode(templateRow.contentEditable, true);
+        let tableRow = document.importNode(templateRow.content, true);
 
         let rowCols = tableRow.querySelectorAll("td");
         rowCols[0].textContent = displayArray[index];
+        rowCols[0].classList.add(displayArray[index]);
+
         rowCols[1].textContent = displayArray[index+1];
+        rowCols[1].classList.add(displayArray[index+1]);
+
         rowCols[2].textContent = displayArray[index+2];
+        rowCols[2].classList.add(displayArray[index+2]);
+
         rowCols[3].textContent = displayArray[index+3];
+        rowCols[3].classList.add(displayArray[index+3]);
+
         rowCols[4].textContent = displayArray[index+4];
+        rowCols[4].classList.add(displayArray[index+4]);
 
         tableBody.appendChild(tableRow);
     }
 
     document.getElementById("resultsDiv").classList.remove("invisible");
 }
-
-
-
-// this variable takes the contents of <tbody id="results"> from the page app.html 
-//let tableBody = document.getElementById("results");
-
-// just in case there is some pre-existing content in <tbody id="results"> , we add this line.
-// this makes sure that tableBody is an empty string variable
-//tableBody.innerHTML = "";
-
-// this variable retrieves the template contents from <template id="thTemplate">
-// let templateRow = document.getElementById("thTemplate");
-
-//the method document.importNode() extracts the #document-fragment from templateRow.
-//then the #document-fragment is passed to this variable.
-//let tableRow = document.importNode(templateRow.contentEditable, true);
-
-//this variable is an array of five indexed values, each one is an empty <td> tag.
-//let rowCols = tableRow.querySelectorAll("td");
